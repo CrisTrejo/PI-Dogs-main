@@ -26,7 +26,7 @@ const Details = ()=>{
             
                 <div >
                 <h1>{myDog.name}</h1>
-                <img src={myDog.reference_image_id? myDog.reference_image_id : myDog.image} alt="" width="100px" height="100px"/>
+                <img src={myDog.reference_image_id? 'https://cdn2.thedogapi.com/images/' + myDog.reference_image_id + '.jpg'  : myDog.image} alt="" width="100px" height="100px"/>
                 <p>Altura: {myDog.height}</p>
                 <p>Peso : {myDog.weight}</p>
                 <p>Años de vida: {myDog.life_span}</p>

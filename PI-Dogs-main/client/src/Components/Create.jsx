@@ -122,7 +122,7 @@ const Create = ()=>{
             })
             if (input.temperament.length) {
                 setSendButton(true)
-                console.log(input.genres.length, "LENGTH")
+                console.log(input.temperament.length, "LENGTH")
             } 
         }
     }
@@ -163,6 +163,9 @@ const Create = ()=>{
                         onChange={(e)=>handleChange(e)}
                         
                     />
+                     {errors.height && (
+                        <p className='error'>{errors.height}</p>
+                    )}
                 </div>
                 <div>
                     <label>Peso: </label>
@@ -174,6 +177,9 @@ const Create = ()=>{
                         onChange={(e)=>handleChange(e)}
                         
                     />
+                    {errors.weight && (
+                        <p className='error'>{errors.weight}</p>
+                    )}
                 </div>
                 <div>
                     <label>Años de vida: </label>
@@ -185,6 +191,9 @@ const Create = ()=>{
                         onChange={(e)=>handleChange(e)}
                         
                     />
+                    {errors.life_span && (
+                        <p className='error'>{errors.life_span}</p>
+                    )}
                 </div>
                 {/* <div>
                     <label>Imagen: </label>

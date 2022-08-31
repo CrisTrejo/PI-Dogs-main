@@ -75,7 +75,8 @@ const DetailsDG = async (id) =>{
         const apiInfo = await axios.get("https://api.thedogapi.com/v1/breeds/" + id + "?api_key=" + APIKEY);
         const detalles = apiInfo.data
         // console.log(detalles)
-
+        // const apiImg = await axios.get("https://api.thedogapi.com/v1/images/" + detalles.reference_image_id + "?api_key=" + APIKEY);
+        // console.log(apiImg.data, "IMAGEN")
         const objDetalle = {
             id:               detalles.id,
             name:             detalles.name,
