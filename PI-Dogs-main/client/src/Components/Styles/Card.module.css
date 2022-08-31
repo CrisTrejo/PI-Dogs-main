@@ -1,0 +1,28 @@
+.name{
+    color: white;
+}
+
+.temperament{
+    color: white;
+    justify-content: center;
+}
+
+.weight{
+    color: white;
+}
+.card{
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #000;
+    margin-left: 4vh;
+    margin-right: 4vh;
+    margin-bottom: 1vh;
+    padding: 1vh;
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    color: #8f5a5a;
+    cursor: pointer;
+    text-shadow: 1px 1px 2px #000;
+    box-shadow: 0 0 25px 19px rgb(4 4 0 / 36%);
+    background-color:rgba(213, 200, 182, 0.609);
+}
