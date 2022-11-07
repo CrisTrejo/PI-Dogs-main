@@ -44,7 +44,7 @@ const getApiInfo = async ()=>{
 }
 
 const getDbInfo = async ()=>{
-    return await Dog.findAll({
+    const perrardos =  await Dog.findAll({
         include: {
             model: Temperament,
             attributes: ["name"],
@@ -53,11 +53,25 @@ const getDbInfo = async ()=>{
             },
           },
     })
+
+    return perrardos.map((el)=>{
+        return{
+             id: el.dataValues.id,
+            name: el.dataValues.name,
+            height: el.dataValues.height,
+            weight: el.dataValues.weight,
+            life_span: el.dataValues.life_span,
+            image: el.dataValues.image,
+            temperament: el.dataValues.temperament.map((e) => ( e.dataValues.name )),
+            createdInDb: el.dataValues.createdInDb
+        }
+    })
 }
 
 const getAllDogs = async ()=>{
     let apiInfo = await getApiInfo()
     let dbInfo = await getDbInfo()
+    console.log(dbInfo, "INFO DE LA DATABASE")
     const infoTotal = apiInfo.concat(dbInfo)
     return infoTotal
 }
@@ -103,16 +117,18 @@ const saveTemperaments = async () => {
     const spliteado = temperaments.split(',',temperaments.length).sort().map(el=>el.trim())
 let tempSet = new Set(spliteado)
     let temperamentardos = await Temperament.findAll()
-    console.log(temperamentardos)
+    console.log(temperamentardos, "ACA TEMPERMENTOS DB")
     let filteredTemp = Array.from(tempSet).filter(el=> el.length > 1)
+    console.log(filteredTemp,"TEMPERAMENTOS FILTERED")
     if (temperamentardos.length=== 0){
         
     
     filteredTemp.forEach(async(el) => {
         await Temperament.create({name: el})
     })}
-    filteredTemp = filteredTemp.map(el=>({name:el}))
-    // console.log(filteredTemp)
+    console.log(filteredTemp, "QUE ONDA ESTE TEMPERAMENT")
+    // filteredTemp = filteredTemp.map(el=>({name:el}))
+    // console.log(filteredTemp,"TEMPERAMENTOS FILTERED 2.o" )
     return filteredTemp
   };
 
@@ -135,7 +151,7 @@ router.get('/dogs', async (req, res) => {
         let dogsName = await totalDogs.filter(el => el.name.toLowerCase().includes(name.toLowerCase()))
         dogsName.length ?
             res.status(200).send(dogsName) :
-            res.status(404).send("No existe el perro")
+            res.status(404).send([])
     } else {
         res.status(200).send(totalDogs)
     }
@@ -158,6 +174,37 @@ router.get('/dogs', async (req, res) => {
     }
     
  });
+ router.delete ('/dogs/:id', async (req,res)=>{
+    try{
+        const {id} = req.params;
+        let dogDelete = await Dog.findByPk(id)
+        if(dogDelete){
+            await dogDelete.destroy();
+            return res.send("Raza eliminada")
+        }
+        res.status(404).send("Perro no encontrado");
+
+    }catch(error){
+        console.log(error)
+    }
+ }
+ )
+
+ router.put('/dogs/:id'), async (req,res)=>{
+    try{
+        const {id} = req.params;
+        let editDog = await Dog.findOne({
+            where: {id: id}
+        })
+        await editDog.update({
+            name:req.body.name
+        })
+        res.status(200).send(editDog)
+
+    }catch(error){
+        console.log(error)
+    }
+ }
 
  router.post('/dogs', async (req, res) => {
     try {
@@ -184,7 +231,7 @@ console.log(temperament, "SOY EL TEMP")
         let TemperamentDB = await Temperament.findAll({
             where: { name: temperament },
           });
-          console.log(TemperamentDB)
+        //   console.log(TemperamentDB, "y esto?")
          await newDog.addTemperament(TemperamentDB)
 
         // console.log(temperamentIndb)
@@ -201,8 +248,8 @@ router.get('/temperaments', async (req,res) => {
     try{
     
    let infoApi = await saveTemperaments()
-   
-   res.status(200).send(infoApi)
+   let temperamentosSinName = infoApi.map(el=>el)
+   res.status(200).send(temperamentosSinName)
 //    console.log(infoApi)
 } catch(error){
     console.log(error)

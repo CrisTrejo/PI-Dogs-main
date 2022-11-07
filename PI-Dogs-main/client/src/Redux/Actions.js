@@ -61,7 +61,10 @@ export function getDogs(){
           payload:json.data
         })
       }catch(error){
-        console.log(error)
+        return (
+          alert("El perro que buscas no esta en nuestra base de datos :(")
+        )
+        // console.log(error)
       }
     }
   }
@@ -79,7 +82,25 @@ export function getDogs(){
       }
     }
   }
-  
+  export function deleteDog(id){
+    return async function(dispatch){
+      await axios.delete('http://localhost:3001/dogs/' + id)
+      return dispatch({
+        type: 'DELETE_DOG',
+
+      })
+    }
+
+  }
+
+  export function editDog(id, data){
+    return async function (dispatch) {
+      await axios.put('http://localhost:3001/dogs/' + id ,data)
+      return dispatch({
+        type: 'UPDATE_DOG'
+      })
+    }
+}
 
     // export function getTemperaments(){
     //     return async function (dispatch){

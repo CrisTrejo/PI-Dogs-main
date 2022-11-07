@@ -11,8 +11,8 @@ export default function Landing(){
         <div className={s.titulo2}>Dog Library</div>
         
         
-        <div className={s.subtitulo2}>It has 100 breeds of dogs and their respective details. 
-        <br></br>Includes filters and a search bar. You can also create your own race</div>
+        <div className={s.subtitulo2}>Más de 100 razas de perros con detalles e información de cada uno de ellos 
+        <br></br>Incluye filtros aplicables y barra de búsqueda. También podes crear tu propia raza de perro.</div>
         
         <div  className={s.button}>
        <Link to = '/home'  className={s.link}>HOME</Link>

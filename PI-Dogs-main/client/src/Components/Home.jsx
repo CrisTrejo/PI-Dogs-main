@@ -81,7 +81,7 @@ return(
       <p>Temperamentos : </p>
       <select onChange={e => handleFilterTemperament(e)}> 
         <option value = 'All'>Todos</option>
-          {allTemperaments?.map(el=><option key = {el.id} value = {el.name}>{el.name}</option>)}
+          {allTemperaments?.map(el=><option key = {el.id} value = {el}>{el}</option>)}
       </select>
       <p> Creados y existentes : </p>
       <select onChange={e => handleFilterCreated(e)}>
@@ -107,15 +107,19 @@ return(
           <Card 
           name={d.name} 
           image={d.image ? d.image : <img src= 'https://comodibujar.club/perro-kawaii/' alt = "Img not found"/>} 
-          weight={"Peso: " + d.weight} 
+          weight={d.weight} 
           temperament={ d.temperament}
           createdInDb={d.createdInDb}
+          
           />
           </Link>
           </div>
           )
-        })
+        }
+        
+        )
       }
+      {currentDogs.length === 0 && <h1>Cargando.. </h1>}
       </div>
       <Paginado 
       dogsPerPage={dogsPerPage}
