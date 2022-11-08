@@ -85,7 +85,7 @@ return(
       </select>
       <p> Creados y existentes : </p>
       <select onChange={e => handleFilterCreated(e)}>
-        <option value='All'>Todos</option>
+      <option value = 'All'>Todos</option>
         <option value='created'>Creados</option>
         <option value='api'>Existentes</option>
       </select>

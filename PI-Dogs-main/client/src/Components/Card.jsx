@@ -13,7 +13,7 @@ const Card = ({name, weight, temperament, image, createdInDb })=>{
                     }}/>
             <h3 className={s.name}>{name}</h3>
             <h5 className={s.weight}>Peso: {weight}</h5>
-            <h5 className={s.temperament}>Temperamento: {temperament?.length === 0 && "Desconocido" } {createdInDb? temperament?.map(el=>el.name + ', '):temperament.map(el=>el + " ")}</h5>
+            <h5 className={s.temperament}>Temperamento: {temperament?.length === 0 && "Desconocido" } {createdInDb? temperament?.map(el=>el + ' '):temperament.map(el=>el + " ")}</h5>
            
         </div>
     )

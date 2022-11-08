@@ -32,7 +32,7 @@ function rootReducer(state = initialState, action) {
             const allDogss = state.allDogs
             // console.log(state.allDogs)
             // console.log(allDogss, "EL ALL DOGS")
-            const temperamentFiltered = action.payload === 'All' ? allDogs : allDogss.filter(el=>el?.temperament?.map(el=>el).includes(action.payload))
+            const temperamentFiltered = action.payload === 'All' ? state.allDogs : allDogss.filter(el=>el?.temperament?.map(el=>el).includes(action.payload))
             console.log(temperamentFiltered, "TEMP FILTRADO")
             
             return{
