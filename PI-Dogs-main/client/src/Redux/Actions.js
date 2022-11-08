@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export function getDogs(){
     return async function (dispatch){
-      const dogs = await axios.get ("http://localhost:3001/dogs");
+      const dogs = await axios.get ("/dogs");
       return dispatch({
         type: 'GET_DOGS',
         payload: dogs.data
@@ -20,7 +20,7 @@ export function getDogs(){
   }
   export function getTemperament(){
     return async function (dispatch){
-      var temperament = await axios.get ("http://localhost:3001/temperaments");
+      var temperament = await axios.get ("/temperaments");
       
       return dispatch({
           type: 'GET_TEMPERAMENT',
@@ -31,7 +31,7 @@ export function getDogs(){
 
       export function postDog(payload){
         return async function (dispatch){
-          const response = await axios.post ("http://localhost:3001/dogs", payload)
+          const response = await axios.post ("/dogs", payload)
           console.log(response)
           return response
         }
@@ -55,7 +55,7 @@ export function getDogs(){
     return async function(dispatch){
 
       try{
-        var json = await axios.get ('http://localhost:3001/dogs?name=' + name)
+        var json = await axios.get ('/dogs?name=' + name)
         return dispatch({
           type:'GET_NAME_DOGS',
           payload:json.data
@@ -71,7 +71,7 @@ export function getDogs(){
   export function getDetail(id){
     return async function(dispatch){
       try{
-        var json = await axios.get('http://localhost:3001/dogs/' + id)
+        var json = await axios.get('/dogs/' + id)
         console.log(json)
         return dispatch({
           type: "GET_DETAIL",
@@ -84,7 +84,7 @@ export function getDogs(){
   }
   export function deleteDog(id){
     return async function(dispatch){
-      await axios.delete('http://localhost:3001/dogs/' + id)
+      await axios.delete('/dogs/' + id)
       return dispatch({
         type: 'DELETE_DOG',
 
@@ -95,7 +95,7 @@ export function getDogs(){
 
   export function editDog(id, data){
     return async function (dispatch) {
-      await axios.put('http://localhost:3001/dogs/' + id ,data)
+      await axios.put('/dogs/' + id ,data)
       return dispatch({
         type: 'UPDATE_DOG'
       })
