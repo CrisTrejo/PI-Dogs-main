@@ -2,7 +2,7 @@ import React from 'react'
 // import s from 'Styles/Details.module.css'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { getDetail, deleteDog } from '../Redux/Actions'
+import { getDetail, deleteDog, } from '../Redux/Actions'
 import { useEffect } from 'react'
 import s from './Styles/Details.module.css'
 

@@ -3,6 +3,7 @@ const initialState = {
     temperament: [],
     allDogs: [],
     detail:{}
+
 }
 
 function rootReducer(state = initialState, action) {
@@ -27,6 +28,15 @@ function rootReducer(state = initialState, action) {
                     dogs: action.payload === 'All' ? state.allDogs : createdFilter
     
                 }
+                case 'CLEAR_DETAIL':
+                    return {
+                        ...state,
+                        detail: {}
+                      };
+                   
+        
+                    
+
         case 'FILTER_BY_TEMPERAMENT':
             // console.log(action.payload, "PAYLOAD TEMP")
             const allDogss = state.allDogs

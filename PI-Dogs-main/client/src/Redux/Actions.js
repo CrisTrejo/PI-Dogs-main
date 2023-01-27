@@ -82,6 +82,14 @@ export function getDogs(){
       }
     }
   }
+  export function clearDetail(){
+    return {
+
+      type: 'CLEAR_DETAIL',
+      
+    }
+    
+  }
   export function deleteDog(id){
     return async function(dispatch){
       await axios.delete('/dogs/' + id)

@@ -2,7 +2,7 @@ import React from 'react'
 import {useState, useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getDogs, getTemperament, filterDogsByTemperament, filterCreated, orderByName  } from '../Redux/Actions'
+import { getDogs, getTemperament, filterDogsByTemperament, filterCreated, orderByName, getDetail, clearDetail  } from '../Redux/Actions'
 import Card from './Card'
 import Paginado from './Paginado'
 import SearchBar from './SearchBar'
@@ -33,8 +33,11 @@ const Home = () =>{
   useEffect(()=>{
         dispatch(getDogs())
         dispatch(getTemperament())
+        dispatch(clearDetail())
   },[dispatch])//segundo parametro de useEffect
   //es lo mismo q hacer el maps dispatch to props
+
+
 
   const handleClick = (e) =>{
     e.preventDefault() //preventivo
